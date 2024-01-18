@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page Title -->
+    <title>Lazarus Order Lifting Web App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+</head>
+
+<body>
+
+    <!-- Left container Section -->
+    <div class="left-container">
+
+        <!-- Employee cards Section -->
+        <div class="employee-cards">
+        </div>
+    </div>
+
+    <!-- Right container Section -->
+    <div class="right-container">
+
+        <!-- Input Section -->
+        <div class="input">
+            <h1>Lazarus Order Lifting Web App</h1>
+            <form id="timeTrackingForm">
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                <label for="hours">Hours:</label>
+                <select id="hours" name="hours">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+
+                <label for="minutes">Minutes:</label>
+                <select id="minutes" name="minutes">
+                    <option value="0">0</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                    <option value="35">35</option>
+                    <option value="40">40</option>
+                    <option value="45">45</option>
+                    <option value="50">50</option>
+                    <option value="55">55</option>
+                </select>
+                <button type="button" id="clockIn">Clock In</button>
+                <button type="button" id="clockOut">Clock Out</button>
+            </form>
+        </div>
+
+        <!-- Log Section -->
+        <div class="log">
+            <h2>Log</h2>
+            <div id="time"></div>
+
+            <!-- Log entries Section -->
+            <div class="log-entries" id="logEntries">
+                <!-- Log entries will be added here -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
