@@ -14,9 +14,11 @@
 
     <!-- Left container Section -->
     <div class="left-container">
-
+        <div class="selectorArea">
+            <h3>Select an employee</h3>
+        </div>
         <!-- Employee cards Section -->
-        <div class="employee-cards">
+        <div class="order-cards">
         </div>
     </div>
 
@@ -27,10 +29,9 @@
         <div class="input">
             <h1>Lazarus Order Lifting Web App</h1>
             <form id="timeTrackingForm">
-                <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
-                <label for="hours">Hours:</label>
+                <div class="time-selectors">
                 <select id="hours" name="hours">
+                    <option value="Hours">Hours</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -43,9 +44,8 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                 </select>
-
-                <label for="minutes">Minutes:</label>
                 <select id="minutes" name="minutes">
+                    <option value="Minutes">Minutes</option>
                     <option value="0">0</option>
                     <option value="5">5</option>
                     <option value="10">10</option>
@@ -59,8 +59,16 @@
                     <option value="50">50</option>
                     <option value="55">55</option>
                 </select>
-                <button type="button" id="clockIn">Clock In</button>
-                <button type="button" id="clockOut">Clock Out</button>
+                <div class="ampm">
+                <select id="ampm" name="ampm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                </div>
+                </div>
+                <textarea id="issues" name="issues" placeholder="Issues" rows="4" cols="50"></textarea>
+                <textarea id="notes" name="notes" placeholder="Notes" rows="4" cols="50"></textarea>
+                <button type="button" id="submit">Submit</button>
             </form>
         </div>
 

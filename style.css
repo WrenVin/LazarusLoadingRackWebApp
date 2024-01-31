@@ -34,6 +34,7 @@ body {
     flex-direction: column;
     height: 100vh;
     align-self: flex-start;
+    width: 40%;
 }
 
 /* Style for .left-container */
@@ -79,6 +80,11 @@ body {
     transform: scale(1.01);
     transition: transform 0.2s, box-shadow 0.2s;
 }
+.selectorArea:hover{
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        transform: scale(1.01);
+        transition: transform 0.2s, box-shadow 0.2s;
+}
 
 /* Style for .employee-cards */
 .employee-cards {
@@ -90,6 +96,17 @@ body {
     /* Adjust as needed */
     padding: 10px;
     /* To align with the left edge */
+}
+
+.selectorArea{
+    background: #fff;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+            transition: transform 0.2s, box-shadow 0.2s;
+            
 }
 
 /* Style for .card */
@@ -106,6 +123,7 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+
 h1,
 
 /* Style for h2 */
@@ -114,10 +132,11 @@ h2 {
     text-align: center;
 }
 
-input,
+textarea,
 
 /* Style for button */
 button {
+    resize: none;
     width: calc(100% - 24px);
     /* Adjusted for padding */
     padding: 12px;
@@ -125,6 +144,18 @@ button {
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
+}
+textarea::placeholder {
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+}
+
+#employeeName {
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    color: gray;
+    border: black;
+
 }
 
 /* Style for button */
@@ -166,6 +197,21 @@ label {
     display: block;
     font-size: 16px;
     color: #3d3b3b;
+}
+
+.time-selectors {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.time-selectors label,
+.time-selectors select {
+    margin-right: 10px;
+}
+
+.ampm {
+    width: 60%;
 }
 
 /* Style for .log-entry */
@@ -234,7 +280,6 @@ input:focus {
 
 /* Style for card:hover */
 card:hover {
-    /* Example styles */
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
     cursor: pointer;
