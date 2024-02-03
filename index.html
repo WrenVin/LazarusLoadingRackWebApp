@@ -14,11 +14,32 @@
 
     <!-- Left container Section -->
     <div class="left-container">
-        <div class="selectorArea">
-            <h3>Select an employee</h3>
+        <div class="selectorArea" id="selectorArea">
+            <h1>Current Selected</h1>
+            <h3 id="selector">Customer: Select an order 
+                <br> Product: 
+                <br> Scheduled Date: 
+                <br> Driver:
+                <br> Scheduled Time:
+                <br> Loads:
+                <br> Destination:
+                <br> Trailer:
+        </h3>
         </div>
-        <!-- Employee cards Section -->
-        <div class="order-cards">
+        <!-- Sort button -->
+        <div style="display: flex; justify-content: flex-start; width: 100%;">
+            <!-- Sort button -->
+            <div class="buttonArea" id="sort" style="width: 60px;">
+                <img src="sort.jpeg" alt="Sort" style="width: 100%; height: auto;">
+            </div>
+        
+            <!-- Filter button -->
+            <div class="buttonArea" id="filter" style="width: 60px;">
+                <img src="filter.jpeg" alt="Filter" style="width: 100%; height: auto;">
+            </div>
+        </div>
+        <!-- Order cards Section -->
+        <div class="order-cards" style="height: calc(100vh - 460px); overflow-y: scroll;">
         </div>
     </div>
 
