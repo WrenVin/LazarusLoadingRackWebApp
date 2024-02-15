@@ -258,22 +258,36 @@ document.getElementById('submit').addEventListener('click', function() {
     const timeLifted = `${hours}:${minutes} ${ampm}`;
 
     // Check if an order is selected
-    if(orderDetails) {
-        // Send data to Google Sheets
-        sendDataToSheet({
-            ...orderDetails,
-            dateLifted,
-            timeLifted,
-            issues,
-            notes,
-        });
-    } else {
+    if (!orderDetails) {
         alert('Please select an order before submitting.');
+        return; // Stop execution if no order is selected
     }
+
+    // Check if a valid time has been selected
+    if (hours === "Hours" || minutes === "Minutes") {
+        alert('Please select a valid time before submitting.');
+        return; // Stop execution if no valid time is selected
+    }
+    const logDetails = {
+        customer: orderDetails.customer,
+        product: orderDetails.product,
+        dateLifted: dateLifted,
+        timeLifted: timeLifted
+    };
+
+    // If all checks pass, send data to Google Sheets
+    sendDataToSheet({
+        ...orderDetails,
+        dateLifted,
+        timeLifted,
+        issues,
+        notes,
+    }, logDetails);
 });
 
 
-function sendDataToSheet(data) {
+
+function sendDataToSheet(data, logDetails) {
     fetch('/api/writesheet', {
         method: 'POST',
         headers: {
@@ -284,10 +298,49 @@ function sendDataToSheet(data) {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
+        if (data.status === 'Success') {
+            // Use logDetails for the success message
+            const successMessage = `Success! Customer ${logDetails.customer}'s order of ${logDetails.product} was loaded on ${logDetails.dateLifted} at ${logDetails.timeLifted}`;
+            addLogEntry(successMessage, "success");
+            // Deselect current order card
+            const selectedOrderCard = document.querySelector('.card.selected');
+            if (selectedOrderCard) {
+                selectedOrderCard.classList.remove('selected');
+                selectedOrderCard.style.backgroundColor = "white"; // Reset background color if needed
+                selectedOrderCard.style.transform = "scale(1)"; // Reset scale if you're using scale to indicate selection
+            }
+
+            // Clear input fields
+            document.getElementById('hours').value = 'Hours';
+            document.getElementById('minutes').value = 'Minutes';
+            document.getElementById('ampm').value = 'AM';
+            document.getElementById('issues').value = '';
+            document.getElementById('notes').value = '';
+
+            // Optionally, clear the selection display area
+            document.getElementById("selector").innerText = "Customer: Select an order \n Product: \n Scheduled Date: \n Driver: \n Scheduled Time: \n Loads: \n Destination: \n Trailer:";
+            document.getElementById("selectorArea").style.backgroundColor = "white";
+        }
     })
     .catch((error) => {
         console.error('Error:', error);
+        // Display error log message
+        const errorMessage = `Error: ${error.message}`;
+        addLogEntry(errorMessage, "error");
     });
+}
+
+
+function addLogEntry(message, type) {
+    const logEntries = document.getElementById('logEntries');
+    const entry = document.createElement('div');
+    entry.textContent = message;
+    if (type === "success") {
+        entry.style.color = 'green';
+    } else if (type === "error") {
+        entry.style.color = 'red';
+    }
+    logEntries.appendChild(entry);
 }
 
 
