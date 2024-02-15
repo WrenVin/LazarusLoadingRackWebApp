@@ -25,6 +25,7 @@ body {
     flex-direction: row;
     align-items: flex-start;
     /* Align items to the right */
+    overflow: hidden;
 }
 
 /* Style for .right-container */
@@ -111,6 +112,9 @@ body {
 
 .buttonArea{
     background: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
         padding: 10px;
         margin: 0px;
         margin-left: 20px;
@@ -120,6 +124,64 @@ body {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         transition: transform 0.2s, box-shadow 0.2s;
+        height: 50px;
+}
+
+.sortArea {
+    display: flex;
+    align-items: stretch; /* This will make the items the same height */
+}
+
+.sortArea {
+    flex: 1; /* This will make the items take up an equal amount of space */
+}
+/* Add this to your CSS file */
+.filterItem input[type="checkbox"] {
+    position: relative;
+    top: 4px;
+    margin-right: 10px;
+    transform: scale(1.5); /* This will make the checkbox bigger */
+}
+#sortSelect {
+    width: 90%;
+    height: 70%;
+    margin: 0;
+    margin-top: 7px;
+}
+
+#reverse {
+    width: 10%;
+    height: 40px;
+    margin: 0;
+    border: 1px solid rgb(169, 157, 157);
+    margin-top: 1px;
+
+}
+.filterButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    /* This will add some space between the buttons */
+}.filterGroup {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* This will create 2 columns */
+    grid-auto-rows: auto; /* This will make the rows size to fit their content */
+    gap: 10px; /* This will add some space between the items */
+    
+}
+
+.filterItem {
+    display: flex;
+    align-items: center; /* This will vertically center the checkbox and the input */
+}
+/* Add this to your CSS file */
+.filterItem label {
+    margin-right: 10px; /* Adjust as needed */
+}
+#reverse img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* This will make the image scale while maintaining its aspect ratio */
 }
 
 .buttonArea:hover {
@@ -137,9 +199,26 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /* Width is 1/4 of the container */
     width: calc(25% - 20px);
+    max-height: 240px;
     /* Adjust the width as needed */
     box-sizing: border-box;
     transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card p{
+    margin: 4px;
+}
+
+#filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#filter>div {
+    display: flex;
+    align-items: center;
+    margin: 10px;
 }
 
 

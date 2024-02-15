@@ -8,14 +8,13 @@
     <title>Lazarus Order Lifting Web App</title>
     <link rel="stylesheet" href="style.css">
 </head>
-</head>
 
 <body>
 
     <!-- Left container Section -->
     <div class="left-container">
         <div class="selectorArea" id="selectorArea">
-            <h1>Current Selected</h1>
+            <h1>Current Order Selected</h1>
             <h3 id="selector">Customer: Select an order 
                 <br> Product: 
                 <br> Scheduled Date: 
@@ -27,21 +26,80 @@
         </h3>
         </div>
         <!-- Sort button -->
-        <div style="display: flex; justify-content: flex-start; width: 100%;">
-            <!-- Sort button -->
-            <div class="buttonArea" id="sort" style="width: 60px;">
-                <img src="sort.jpeg" alt="Sort" style="width: 100%; height: auto;">
+        <div class="selectorArea">
+            <!-- Sort Drop Down -->
+            <div class="sortArea">
+            <div>
+                <select id="sortSelect">
+                    <option value="">Sort</option>
+                    <option value="customer">Customer Name</option>
+                    <option value="product">Product</option>
+                    <option value="date">Scheduled Date</option>
+                    <option value="driver">Driver</option>
+                    <option value="time">Scheduled Time</option>
+                    <option value="loads">Loads</option>
+                    <option value="destination">Destination</option>
+                    <option value="trailer">Trailer</option>
+                </select>
             </div>
+            <!-- Reverse Sort button -->
+            <div class="buttonArea" id="reverse" style="width: 60px; margin-top: 8px;">
+                <img src="reverse.png" alt="Reverse">
+            </div>
+            
+            <div class="filterButtons" style="width:160px; margin-top: 7px;">
+                <button id="resetButton" style="margin-left: 10px;">Reset Filters</button>
+            </div>
+            </div>
+            <!-- Filter Selectors -->
+            <div class="filterGroup">
+                    <div class="filterItem">
+                    
+                    <label for="customerCheckbox">Customer Name:</label>
+                    <input type="text" id="customerInput">
+                </div>
+            <div class="filterItem">
+            <label for="productCheckbox">Product:</label>
+            <input type="text" id="productInput"></div>
+                    
+                
+            <div class="filterItem">
+            <label for="dateCheckbox">Scheduled Date:</label>
+            <input type="text" id="dateInput"></div>
+                    
         
-            <!-- Filter button -->
-            <div class="buttonArea" id="filter" style="width: 60px;">
-                <img src="filter.jpeg" alt="Filter" style="width: 100%; height: auto;">
-            </div>
+            <div class="filterItem">
+            <label for="driverCheckbox">Driver:</label>
+            <input type="text" id="driverInput"></div>
+                    
+                
+            <div class="filterItem">
+            <label for="timeCheckbox">Scheduled Time:</label>
+            <input type="text" id="timeInput"></div>
+                    
+                
+            <div class="filterItem">
+            <label for="loadsCheckbox">Loads:</label>
+            <input type="text" id="loadsInput"></div>
+                    
+                
+            <div class="filterItem">
+            <label for="destinationCheckbox">Destination:</label>
+            <input type="text" id="destinationInput"></div>
+                    
+                
+            <div class="filterItem">
+            <label for="trailerCheckbox">Trailer:</label>
+            <input type="text" id="trailerInput"></div>
+           
+        </div>
         </div>
         <!-- Order cards Section -->
-        <div class="order-cards" style="height: calc(100vh - 460px); overflow-y: scroll;">
+        <div class="order-cards" style="height: calc(100vh - 100%); overflow-y: scroll;">
         </div>
     </div>
+    
+    
 
     <!-- Right container Section -->
     <div class="right-container">
