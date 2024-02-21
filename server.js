@@ -85,8 +85,9 @@ app.post('/api/writesheet', async (req, res) => {
                 body.loads, // E
                 body.dateLifted, // F
                 body.timeLifted, // G
-                body.issues, // I
-                body.notes, // J
+                body.issues, // H
+            body.notes, // I
+            body.operator, // J
             ],
         ];
         const resource = {
@@ -103,6 +104,26 @@ app.post('/api/writesheet', async (req, res) => {
         console.error('The API returned an error: ' + error);
         res.status(500).send({status: 'Error', message: 'Failed to write to Google Sheets'});
     }
+});
+app.get('/api/readOperators', async (req, res) => {
+  try {
+    const range = 'Operators!A:B'; 
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: spreadsheetId,
+      range: range,
+    });
+
+    const rows = response.data.values;
+    if (rows.length) {
+      // Skip header row if it exists and directly send data
+      res.send(rows.slice(1)); // Adjust based on your spreadsheet structure
+    } else {
+      res.send([]);
+    }
+  } catch (error) {
+    console.error('Error fetching operator names:', error);
+    res.status(500).send(error.toString());
+  }
 });
 
 

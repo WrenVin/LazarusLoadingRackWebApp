@@ -251,6 +251,7 @@ document.getElementById('submit').addEventListener('click', function() {
     const ampm = document.getElementById('ampm').value;
     const issues = document.getElementById('issues').value;
     const notes = document.getElementById('notes').value;
+    const operator = document.getElementById('operatorName').value;
 
     // Combine date and time into a single string
     const currentTime = new Date();
@@ -272,7 +273,8 @@ document.getElementById('submit').addEventListener('click', function() {
         customer: orderDetails.customer,
         product: orderDetails.product,
         dateLifted: dateLifted,
-        timeLifted: timeLifted
+        timeLifted: timeLifted,
+        operator: operator,
     };
 
     // If all checks pass, send data to Google Sheets
@@ -282,6 +284,7 @@ document.getElementById('submit').addEventListener('click', function() {
         timeLifted,
         issues,
         notes,
+        operator,
     }, logDetails);
 });
 
@@ -300,7 +303,7 @@ function sendDataToSheet(data, logDetails) {
         console.log('Success:', data);
         if (data.status === 'Success') {
             // Use logDetails for the success message
-            const successMessage = `Success! Customer ${logDetails.customer}'s order of ${logDetails.product} was loaded on ${logDetails.dateLifted} at ${logDetails.timeLifted}`;
+            const successMessage = `Success! Customer ${logDetails.customer}'s order of ${logDetails.product} was loaded on ${logDetails.dateLifted} at ${logDetails.timeLifted} by ${logDetails.operator}.`;
             addLogEntry(successMessage, "success");
             // Deselect current order card
             const selectedOrderCard = document.querySelector('.card.selected');
@@ -316,6 +319,7 @@ function sendDataToSheet(data, logDetails) {
             document.getElementById('ampm').value = 'AM';
             document.getElementById('issues').value = '';
             document.getElementById('notes').value = '';
+            document.getElementById('operatorName').value = 'Operator Name';
 
             // Optionally, clear the selection display area
             document.getElementById("selector").innerText = "Customer: Select an order \n Product: \n Scheduled Date: \n Driver: \n Scheduled Time: \n Loads: \n Destination: \n Trailer:";
@@ -342,6 +346,26 @@ function addLogEntry(message, type) {
     }
     logEntries.appendChild(entry);
 }
+
+function populateOperatorDropdown(operatorNames) {
+    const dropdown = document.getElementById('operatorName');
+    operatorNames.forEach(name => {
+        const option = document.createElement('option');
+        option.value = option.textContent = `${name.first} ${name.last}`;
+        dropdown.appendChild(option);
+    });
+}
+fetch('/api/readOperators')
+  .then(response => response.json())
+  .then(data => {
+    const operatorNames = data.map(row => {
+      return { first: row[0], last: row[1] }; // Correctly referencing the columns
+    });
+    populateOperatorDropdown(operatorNames);
+  })
+  .catch(error => console.error('Error:', error));
+
+
 
 
 // Attach event listener to the "Reset" button
